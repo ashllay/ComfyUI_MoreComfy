@@ -17,7 +17,7 @@ class MC_SetTileSize:
     RETURN_NAMES = ("WIDTH", "HEIGHT")
 
     FUNCTION = 'set_tile_size'
-    CATEGORY = "ComfyMC/Image/Simple Resolution"
+    CATEGORY = "ComfyMC/Image"
 
     def set_tile_size(self, image, widthDiv, heightDiv):
         #size = get_image_size(image)

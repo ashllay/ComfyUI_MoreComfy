@@ -18,7 +18,7 @@ class MC_MultiConditioningConcat:
     RETURN_TYPES = ("CONDITIONING",)
     RETURN_NAMES = ("OUT",)
     FUNCTION = "switch"
-    CATEGORY = "Comfytoolkit/Utils"
+    CATEGORY = "ComfyMC/Conditioning"
     DESCRIPTION = """Concat text1+text2 in the following fashion:
 Type: 1 Codition text1 and text2 and then Condconcat1+Condconcat2.
 Type: 2 Codition text2 and text1 and then Condconcat2+Condconcat1.
