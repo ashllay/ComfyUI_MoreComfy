@@ -1,7 +1,5 @@
 from typing import Callable, Mapping
 
-DEFAULT_INT = ("INT", {"default": 0})
-
 class MC_SwitchSeed:
     def __init__(self):
         pass
@@ -28,8 +26,19 @@ class MC_SwitchSeed:
                         "forceInput": True,
                     },
                 ),
-                "Input": ("INT", {"default": 1, "min": 1, "max": 2}),
-            }
+                "Input": ("INT", {"default": 1, "min": 1, "max": 3}),
+            },
+            "optional":{
+                "seed3": (
+                    "INT",
+                    {
+                        "default": 0,
+                        "min": -1e9,
+                        "max": 1e9,
+                        "forceInput": True,
+                    },
+                ),
+            },
         }
 
     RETURN_TYPES = ("INT",)
@@ -37,12 +46,13 @@ class MC_SwitchSeed:
     CATEGORY = "ComfyMC/Utils/Logic"
     FUNCTION = "execute"
 
-    def execute(self, Input, seed1, seed2,):
-        #logger.debug("seed switch: " + str(boolean))
+    def execute(self, Input, seed1, seed2, seed3,):
         if Input == 1:
             return (seed1,)
-        else:
+        elif Input == 2:
             return (seed2,)
+        else:
+            return (seed3,)
 
 class MC_AlterSeed:
     def __init__(self):
@@ -54,7 +64,7 @@ class MC_AlterSeed:
             "required": {
                 "op": (list(INT_BINARY_OPERATIONS.keys()),),
                 "seed": ("INT",{"forceInput": True,},),
-                "modify": DEFAULT_INT,
+                "modify": ("INT", {"default": 1}),
             }
         }
 
