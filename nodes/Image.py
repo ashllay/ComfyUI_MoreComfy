@@ -1,3 +1,4 @@
+import sys
 
 class MC_SetTileSize:
     def __init__(self) -> None:
@@ -8,13 +9,19 @@ class MC_SetTileSize:
         return {
             "required": {
                 "image": ("IMAGE",),
-                "widthDiv": ("FLOAT", {"default": 1.0, "step": 0.001, "round": False}),
-                "heightDiv": ("FLOAT", {"default": 1.0, "step": 0.001, "round": False}),
+                "widthDiv": ("FLOAT", {"default": 1,
+                   "min": -sys.float_info.max,
+                   "max": sys.float_info.max,
+                   "step": 0.01}),
+                "heightDiv": ("FLOAT", {"default": 1,
+                   "min": -sys.float_info.max,
+                   "max": sys.float_info.max,
+                   "step": 0.01}),
             }
         }
 
     RETURN_TYPES = ("INT", "INT",)
-    RETURN_NAMES = ("WIDTH", "HEIGHT")
+    RETURN_NAMES = ("tile_Width", "tile_Height")
 
     FUNCTION = 'set_tile_size'
     CATEGORY = "ComfyMC/Image"
