@@ -1,5 +1,23 @@
 import sys
 
+#Taken from ComfyUI_essentials
+class MC_GetImageSize:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "image": ("IMAGE",),
+            }
+        }
+
+    RETURN_TYPES = ("INT", "INT", )
+    RETURN_NAMES = ("width", "height")
+    FUNCTION = "execute"
+    CATEGORY = "ComfyMC/Image"
+
+    def execute(self, image):
+        return (image.shape[2], image.shape[1])
+    
 class MC_SetTileSize:
     def __init__(self) -> None:
         pass
