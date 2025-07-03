@@ -64,7 +64,7 @@ class MC_AlterSeed:
             "required": {
                 "op": (list(INT_BINARY_OPERATIONS.keys()),),
                 "seed": ("INT",{"forceInput": True,},),
-                "modify": ("INT", {"default": 1}),
+                "modify": ("INT", {"default": 1,"min": 1}),
             }
         }
 
@@ -99,8 +99,8 @@ class MC_SwitchString:
         return {
             "required": {},
             "optional": {
-                "on_true": ("STRING", {"default": ""}),
-                "on_false": ("STRING", {"default": ""}),
+                "on_true": ("STRING", {"forceInput": True}),
+                "on_false": ("STRING", {"forceInput": True}),
                 "signal": (any_typ,),
             }
         }

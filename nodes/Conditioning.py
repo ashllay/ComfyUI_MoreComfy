@@ -11,7 +11,7 @@ class MC_MultiConditioningConcat:
             "text2": ("STRING", {"multiline": True, "dynamicPrompts": True, "default": ""}),
             "width": ("INT", {"default": 1024, "min": 0, "max": MAX_RESOLUTION}),
             "height": ("INT", {"default": 1024, "min": 0, "max": MAX_RESOLUTION}),
-            "size_cond_factor": ("INT", {"default": 4, "min": 1, "max": 16}),
+            "size_cond_factor": ("INT", {"default": 1, "min": 1, "max": 4}),
             "Type": ("INT", {"default": 1, "min": 1, "max": 5}),
         }}
     
@@ -80,9 +80,9 @@ Type: 5 Codition text1.
         elif Type == 2:
             return (self.condconcat(cond2, cond1)[0],CondFactor)
         elif Type == 3:
-            return (self.execute(clip, width, height, size_cond_factor, text1 + text2)[0],CondFactor)
+            return (self.execute(clip, width, height, size_cond_factor, text1 + ", " + text2)[0],CondFactor)
         elif Type == 4:
-            return (self.execute(clip, width, height, size_cond_factor, text2 + text1)[0],CondFactor)
+            return (self.execute(clip, width, height, size_cond_factor, text2 + ", " + text1)[0],CondFactor)
         else:
             return (self.execute(clip, width, height, size_cond_factor, text1)[0],CondFactor)
 
@@ -94,7 +94,7 @@ class MC_MultiConditioningConcatAdvanced:
             "clip": ("CLIP", ),
             "text1": ("STRING", {"multiline": True, "dynamicPrompts": True, "default": ""}),
             "text2": ("STRING", {"multiline": True, "dynamicPrompts": True, "default": ""}),
-            "size_cond_factor": ("INT", {"default": 4, "min": 1, "max": 16}),
+            "size_cond_factor": ("INT", {"default": 1, "min": 1, "max": 4}),
             "Type": ("INT", {"default": 1, "min": 1, "max": 5}),
         },
         "optional": {
@@ -172,9 +172,9 @@ Type: 5 Codition text1.
         elif Type == 2:
             return (self.condconcat(cond2, cond1)[0],cond1,cond2,CondFactor)
         elif Type == 3:
-            return (self.execute(clip, width, height, size_cond_factor, text1 + text2)[0],cond1,cond2,CondFactor)
+            return (self.execute(clip, width, height, size_cond_factor, text1 + ", " + text2)[0],cond1,cond2,CondFactor)
         elif Type == 4:
-            return (self.execute(clip, width, height, size_cond_factor, text2 + text1)[0],cond1,cond2,CondFactor)
+            return (self.execute(clip, width, height, size_cond_factor, text2 + ", " + text1)[0],cond1,cond2,CondFactor)
         else:
             return (self.execute(clip, width, height, size_cond_factor, text1)[0],cond1,cond2,CondFactor)
 
